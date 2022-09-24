@@ -16,9 +16,9 @@ jobs:
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "${{ secrets.PASSWORD }}" -Force)
-    - run: $UserLanguageList = New-WinUserLanguageList -Language "en-US"
-    - run: $UserLanguageList.Add("tr-TR")
-    - run: Set-WinUserLanguageList -LanguageList $UserLanguageList -Force
+    #- run: $UserLanguageList = New-WinUserLanguageList -Language "en-US"
+    #- run: $UserLanguageList.Add("tr-TR")
+    #- run: Set-WinUserLanguageList -LanguageList $UserLanguageList -Force
          
     - run:  Invoke-WebRequest https://github.com/CI-Devs/Windows-RDP-ACTIONS/raw/main/send_telegram.ps1 -OutFile C:\send_telegram.ps1
     - name: cloudflared-Without Login
